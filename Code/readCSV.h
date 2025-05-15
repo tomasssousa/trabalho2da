@@ -1,19 +1,19 @@
 #pragma once
+
 #include <algorithm>
-#include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include "Truck.h"
+#include "Pallet.h"
 
 using namespace std;
 
 /**
 * @brief Function to load Data from a TruckAndPallets CSV file!
-* @param parsedCapacity variable which will be used to save the truck's Capacity in terms of Weight
-* @param parsedPallets variable which will be used to save the truck's Capacity in terms of the number of Pallets
 * @param filename file which we will fetch the data
 */
-template<class T>
-inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &filename) {
+inline void loadTruck(const std::string &filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << filename << std::endl;
@@ -31,7 +31,7 @@ inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &
         std::getline(temp, capacity, ',');
         std::getline(temp, pallets);
 
-        //verify if the string is empty
+        // verify if the string is empty
         if (capacity.empty() || pallets.empty()) {
             std::cerr << "[ERROR] Invalid line skipped (missing truck capacity or number of pallets): " << line << std::endl;
             continue;
@@ -45,11 +45,12 @@ inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &
         }
 
         try {
-            parsedCapacity = stoi(capacity);
-            parsedPallets = stoi(pallets);
+            Truck truck;
+            truck.capacity = stoi(capacity);
+            truck.pallets = stoi(pallets);
+            truckvec.push_back(truck);
 
-
-            std::cout << "[INFO] Parsed: Capacity='" << parsedCapacity << "', Pallets='" << parsedPallets << "'\n";
+            std::cout << "[INFO] Parsed: Capacity='" << truck.capacity << "', Pallets='" << truck.pallets << "'\n";
 
         } catch (const std::exception &e) {
             std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
@@ -61,13 +62,9 @@ inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &
 
 /**
 * @brief Function to load Data from a Pallets CSV file!
-* @param parsedId variable which will be used to save the pallet's ID
-* @param parsedWeight variable which will be used to save the pallet's Weight
-* @param parsedProfit variable which will be used to save the pallet's Profit
 * @param filename file which we will fetch the data
 */
-template<class T>
-inline void loadPallets(int parsedId, int parsedWeight, int parsedProfit, const std::string &filename) {
+inline void loadPallets(const std::string &filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "[FATAL] Error opening file: " << filename << std::endl;
@@ -100,11 +97,13 @@ inline void loadPallets(int parsedId, int parsedWeight, int parsedProfit, const 
         }
 
         try {
-            parsedId = stoi(id);
-            parsedWeight = stoi(weight);
-            parsedProfit = stoi(profit);
+            Pallet pallet;
+            int palletId = stoi(id);
+            pallet.weight = stoi(weight);
+            pallet.profit = stoi(profit);
+            palletmap[palletId] = pallet;
 
-            std::cout << "[INFO] Parsed: Id='" << parsedId << "', Weight='" << parsedWeight << "', Profit='" << parsedProfit << "'\n";
+            std::cout << "[INFO] Parsed: Id='" << palletId << "', Weight='" << pallet.weight << "', Profit='" << pallet.profit << "'\n";
 
         } catch (const std::exception &e) {
             std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
