@@ -15,5 +15,6 @@ set(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fsanitize=address")
 set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP})
 add_executable(Project2
     Code/Main.cpp
-    Code/Menu.cpp)
-target_include_directories(Project2 PRIVATE include)
+    Code/Menu.cpp
+    Code/Menu.h
+    Code/readCSV.h)

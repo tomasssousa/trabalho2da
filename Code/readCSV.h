@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -12,8 +13,8 @@ using namespace std;
 * @param parsedPallets variable which will be used to save the truck's Capacity in terms of the number of Pallets
 * @param filename file which we will fetch the data
 */
-template<class T>
-inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &filename) {
+
+inline void loadTruck(int &parsedCapacity, int &parsedPallets, const std::string &filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << filename << std::endl;
@@ -40,14 +41,13 @@ inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &
         //verify if capacity and pallets are digits
         if (!std::all_of(capacity.begin(), capacity.end(), ::isdigit) ||
             !std::all_of(pallets.begin(), pallets.end(), ::isdigit)) {
-            std::cerr << "[ERROR] Non-numeric field(s): Capacity='" << capacity << "', Pallets='" << pallets << "'\n";
+            std::cout << "[ERROR] Non-numeric field(s): Capacity='" << capacity << "', Pallets='" << pallets << "'\n";
             continue;
         }
 
         try {
             parsedCapacity = stoi(capacity);
             parsedPallets = stoi(pallets);
-
 
             std::cout << "[INFO] Parsed: Capacity='" << parsedCapacity << "', Pallets='" << parsedPallets << "'\n";
 
@@ -61,13 +61,14 @@ inline void loadTruck(int parsedCapacity, int parsedPallets, const std::string &
 
 /**
 * @brief Function to load Data from a Pallets CSV file!
-* @param parsedId variable which will be used to save the pallet's ID
-* @param parsedWeight variable which will be used to save the pallet's Weight
-* @param parsedProfit variable which will be used to save the pallet's Profit
+* @param parsedWeights the vector which will save all the weights
+* @param parsedProfits the vector which will save all the profits
 * @param filename file which we will fetch the data
 */
-template<class T>
-inline void loadPallets(int parsedId, int parsedWeight, int parsedProfit, const std::string &filename) {
+
+/*Change this function to instead save the pallets in 2 vectors, weights and profits*/
+/*
+inline void loadPallets(vector<int>&parsedWeights,  vector<int>&parsedProfits, const std::string &filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "[FATAL] Error opening file: " << filename << std::endl;
@@ -91,20 +92,19 @@ inline void loadPallets(int parsedId, int parsedWeight, int parsedProfit, const 
             continue;
         }
 
-        //verify if id and parking are digits
+        //verify if id and weight and profit are digits
         if (!std::all_of(id.begin(), id.end(), ::isdigit) ||
-            !std::all_of(weight.begin(), weight.end(), ::isdigit ||
-            !std::all_of(profit.begin(), profit.end(), ::isdigit))) {
+            !std::all_of(weight.begin(), weight.end(), ::isdigit) ||
+            !std::all_of(profit.begin(), profit.end(), ::isdigit)) {
             std::cerr << "[ERROR] Non-numeric field(s): Id='" << id << "', Weight='" << weight << "', Profit='" << profit << "'\n";
             continue;
         }
 
         try {
-            parsedId = stoi(id);
-            parsedWeight = stoi(weight);
-            parsedProfit = stoi(profit);
+            parsedWeights.push_back(stoi(weight));
+            parsedProfits.push_back(stoi(profit));
 
-            std::cout << "[INFO] Parsed: Id='" << parsedId << "', Weight='" << parsedWeight << "', Profit='" << parsedProfit << "'\n";
+            std::cout << "[INFO] Parsed: Id='" << id << "', Weight='" << weight << "', Profit='" << profit << "'\n";
 
         } catch (const std::exception &e) {
             std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
@@ -112,4 +112,74 @@ inline void loadPallets(int parsedId, int parsedWeight, int parsedProfit, const 
     }
 
     file.close();
+}
+*/
+
+inline void loadPallets(std::vector<int>& parsedWeights,
+                        std::vector<int>& parsedProfits,
+                        const std::string &filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "[FATAL] Error opening file: " << filename << "\n";
+        return;
+    }
+
+    // helper to trim spaces, tabs, CR, LF
+    auto trim = [](std::string &s) {
+        const char* ws = " \t\n\r";
+        auto start = s.find_first_not_of(ws);
+        auto end   = s.find_last_not_of(ws);
+        if (start == std::string::npos) {
+            s.clear();
+        } else {
+            s = s.substr(start, end - start + 1);
+        }
+    };
+
+    std::string line;
+    // skip header line
+    if (!std::getline(file, line)) return;
+
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+        // remove trailing CR if present
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+
+        std::stringstream ss(line);
+        std::string id, weightStr, profitStr;
+
+        if (!std::getline(ss, id, ',') ||
+            !std::getline(ss, weightStr, ',') ||
+            !std::getline(ss, profitStr)) {
+            std::cerr << "[ERROR] Malformed line, skipping: " << line << "\n";
+            continue;
+        }
+
+        // trim each field
+        trim(id);
+        trim(weightStr);
+        trim(profitStr);
+
+        // ensure weight and profit are non-empty and all digits
+        auto isNumber = [](const std::string &t) {
+            return !t.empty() && std::all_of(t.begin(), t.end(),
+                                             [](unsigned char c){ return std::isdigit(c); });
+        };
+        if (!isNumber(weightStr) || !isNumber(profitStr)) {
+            std::cerr << "[ERROR] Non-numeric field(s), skipping: "
+                      << "weight='" << weightStr << "', profit='" << profitStr << "'\n";
+            continue;
+        }
+
+        try {
+            parsedWeights .push_back(std::stoi(weightStr));
+            parsedProfits .push_back(std::stoi(profitStr));
+            std::cout << "[INFO] Parsed: weight=" << weightStr
+                      << ", profit=" << profitStr << "\n";
+        } catch (const std::exception &e) {
+            std::cerr << "[FATAL] Conversion error on line: " << line
+                      << " -> " << e.what() << "\n";
+        }
+    }
 }
