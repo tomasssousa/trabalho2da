@@ -1,8 +1,15 @@
 #ifndef DYNAMIC_PROGRAMMING_H
 #define DYNAMIC_PROGRAMMING_H
 
-#include "Pallet.h"
+#include <cmath>
+#include <math.h>
+#include <bitset>
+#include <iostream>
 
+#include "Pallet.h"
+#include <iostream>
+#include <map>
+#include <vector>
 /**
 * @brief This function is responsible for calculating the optimal setup, using Dynalic Programming.
 * @param Pallets A map with the pallets to be used in the problem, identifiable by their id.
@@ -11,12 +18,12 @@
 * @param usedItems[] An array with items used marked in true or false             Could be changed to store the id of the used ones
 * @return The integer with the optimal value.
 */
-unsigned int knapsackDP(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
+unsigned int knapsackDP(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
     unsigned int maxValue[n][maxWeight+1];
 
     // Step 1: Initialize the DP matrix with the values for the base cases
     for(unsigned int k = 0; k <= maxWeight; k++) {
-        maxValue[0][k] = (k >= weights[0]) ? values[0] : 0; // base case considers using the first item
+        maxValue[0][k] = (k >= weights[0]) ? profits[0] : 0; // base case considers using the first item
     }
     for(unsigned int i = 1; i <= n; i++) {
         maxValue[i][0] = 0; // value of 0 for knapsacks of capacity = 0
@@ -29,7 +36,7 @@ unsigned int knapsackDP(unsigned int values[], unsigned int weights[], unsigned 
                 maxValue[i][k] = maxValue[i - 1][k]; // item is too big for the knapsack, so the optimal solution is the same as not considering it
             }
             else {
-                unsigned int valueUsingItemI = maxValue[i - 1][k - weights[i]] + values[i];
+                unsigned int valueUsingItemI = maxValue[i - 1][k - weights[i]] + profits[i];
                 if(valueUsingItemI > maxValue[i - 1][k]) {
                     maxValue[i][k] = valueUsingItemI; // using item i improves the solution
                 }
@@ -61,7 +68,7 @@ unsigned int knapsackDP(unsigned int values[], unsigned int weights[], unsigned 
     if(remainingWeight > 0) {
         usedItems[0] = true;
     }
-
+    usedWeight = maxWeight-remainingWeight;
     return maxValue[n-1][maxWeight];
 }
 
