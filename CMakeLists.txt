@@ -23,4 +23,5 @@ add_executable(Project2
         Code/Dynamic_Programming.h
         Code/Truck.h
         Code/Write_output.h
-        Code/Greedy_Method.h)
+        Code/Greedy_Method.h
+        Code/Greedy.h)
