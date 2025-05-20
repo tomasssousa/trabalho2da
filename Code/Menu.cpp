@@ -6,10 +6,16 @@
 //
 
 #include "Menu.h"
+
+#include <chrono>
+
 #include "readCSV.h"
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Brute_Force.h"
+#include <cmath>
+#include "Write_output.h"
 
 std::string algorithm;
 int numOfPallets = 0;
@@ -204,6 +210,18 @@ void handleMainMenuChoice(const int choice) {
                 } else if (algoChoice == ALGO_BACK_TO_MAIN) {
                     break;
                 }
+            }
+            break;
+        case RUN:
+            if (ChosenAlgo == "Brute Force") {
+                unsigned int usedWeight = 0;
+                std::vector<bool> usedItems(numOfPallets,false);
+                auto start = std::chrono::_V2::high_resolution_clock::now();
+                int result = knapsackBF(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> duration = end - start;
+                write_output(weights,profits,ChosenAlgo,usedItems,duration.count(),result,usedWeight);
+
             }
             break;
         default:

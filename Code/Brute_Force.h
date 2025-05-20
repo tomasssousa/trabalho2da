@@ -1,9 +1,16 @@
 #ifndef BRUTE_FORCE_H
 #define BRUTE_FORCE_H
 
+#include <cmath>
+#include <math.h>
+#include <bitset>
+#include <iostream>
+
 #include "Pallet.h"
 #include <iostream>
 #include <map>
+#include <vector>
+#include "Write_output.h"
 
 using namespace std;
 
@@ -15,33 +22,29 @@ using namespace std;
 * @param usedItems[] An array with items used marked in true or false             Could be changed to store the id of the used ones
 * @return The integer with the optimal value.
 */
-unsigned int knapsackBF(Map<int, struct Pallet> Pallets, unsigned int n, unsigned int maxWeight, bool usedItems[]) {
-    //total number of possibilities for arranging the truck, not counting weight limitations.
+unsigned int knapsackBF(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
+    //total number of possibilities for arranging the truck, not counting weight limitations
     unsigned int Iteration = pow(2,n);
-    unsigned int MaxPossibleValue =0;
+    unsigned int MaxPossibleValue = 0;
     for(unsigned int i = 0; i < Iteration; i++) {
         //binary representation of the truck layout.
-        std::bitset<Iteration> binarySub(i);
-        int IterationV=0;
+        std::bitset<2048> binarySub(i);
+        int IterationP=0;
         int IterationW=0;
         for (int j=0; j<n;j++) {
-            IterationV+=Pallets[j].value*binarySub[j];
-            IterationW+=Pallets[j].weight*binarySub[j];
+            IterationP+=profits[j]*binarySub[j];
+            IterationW+=weights[j]*binarySub[j];
         }
-        if (IterationW<=maxWeight && IterationV>MaxPossibleValue) {
-            MaxPossibleValue=IterationV;
+        if (IterationW<=maxWeight && (IterationP>MaxPossibleValue) || (IterationP == MaxPossibleValue && usedWeight > IterationW)) {
+            MaxPossibleValue=IterationP;
+            usedWeight = IterationW;
             for (int j=0; j<n;j++) {
                 if (binarySub[j]==1) {usedItems[j]=true;}
                 else {usedItems[j]=false;}
             }
         }
-        // making sure that, if the solution is the empty truck, a most rare case, the array displays all false.
-        if (MaxPossibleValue==0){
-            for (int j=0; j<n;j++) {
-                usedItems[j]=false;
-            }
-        }
     }
+
     return MaxPossibleValue;
 }
 

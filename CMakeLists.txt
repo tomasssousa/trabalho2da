@@ -21,4 +21,6 @@ add_executable(Project2
         Code/Pallet.h
         Code/Brute_Force.h
         Code/Dynamic_Programming.h
-        Code/Truck.h)
+        Code/Truck.h
+        Code/Write_output.h
+        Code/Greedy_Method.h)
