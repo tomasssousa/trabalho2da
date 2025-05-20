@@ -24,4 +24,4 @@ add_executable(Project2
         Code/Truck.h
         Code/Write_output.h
         Code/Greedy_Method.h
-        Code/Greedy.h)
+)
