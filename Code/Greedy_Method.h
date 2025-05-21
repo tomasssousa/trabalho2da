@@ -12,7 +12,7 @@
 #include <vector>
 
 
-unsigned int knapsackGreedyValue(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
+unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
     int MaxProfit=0;
     usedWeight=0;
     bool flag=false;
@@ -39,6 +39,53 @@ unsigned int knapsackGreedyValue(const std::vector<int> &profits,const std::vect
         else {flag=true;}
     }
     return MaxProfit;
+}
+
+unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
+    int MaxProfit=0;
+    usedWeight=0;
+    bool flag=false;
+    bool PossibleItem=false;
+    for(int i=0;i<n;i++) {usedItems[i]=false;}
+    while (!flag) {
+        int maxTProfit=0;
+        int TPosition;
+        for (int i=0; i<n; i++) {
+            if (((profits[i]==maxTProfit && weights[i]<weights[TPosition])||profits[i]>maxTProfit) && weights[i]<=maxWeight && usedItems[i]==false) {
+                maxTProfit=profits[i];
+                TPosition=i;
+                PossibleItem=true;
+            }
+        }
+        if (PossibleItem){
+            MaxProfit+=maxTProfit;
+            maxWeight-=weights[TPosition];
+            usedWeight+=weights[TPosition];
+            usedItems[TPosition]=true;
+            PossibleItem=false;
+        }
+        else {flag=true;}
+    }
+    return MaxProfit;
+}
+
+unsigned int knapsackGreedyOptimal(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight){
+    int usedWeight1=0;
+    int usedWeight2=0;
+    std::vector<bool> usedItems1(n,false);
+    std::vector<bool> usedItems2(n,false);
+    int result1 = knapsackGreedyProfit(profits,weights,n,maxWeight,usedItems1,usedWeight1);
+    int result2 = knapsackGreedyRacio(profits,weights,n,maxWeight,usedItems2,usedWeight2);
+    if (result1>result2){
+        usedWeight=usedWeight1;
+        usedItems=usedItems1;
+        return result1;
+    }
+    else{
+        usedWeight=usedWeight2;
+        usedItems=usedItems2;
+        return result2;
+    }
 }
 
 #endif //GREEDY_METHOD_H
