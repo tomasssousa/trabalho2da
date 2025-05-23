@@ -4,13 +4,7 @@
 #include <cmath>
 #include <math.h>
 #include <bitset>
-#include <iostream>
-
-#include "Pallet.h"
-#include <iostream>
-#include <map>
 #include <vector>
-#include "Write_output.h"
 
 using namespace std;
 

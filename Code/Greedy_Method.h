@@ -1,14 +1,6 @@
 #ifndef GREEDY_METHOD_H
 #define GREEDY_METHOD_H
 
-#include <cmath>
-#include <math.h>
-#include <bitset>
-#include <iostream>
-
-#include "Pallet.h"
-#include <iostream>
-#include <map>
 #include <vector>
 
 

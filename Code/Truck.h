@@ -1,7 +1,6 @@
 #ifndef TRUCK_H
 #define TRUCK_H
 
-#include <iostream>
 #include <vector>
 
 

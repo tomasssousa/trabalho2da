@@ -1,7 +1,6 @@
 #ifndef PALLET_H
 #define PALLET_H
 
-#include <iostream>
 #include <map>
 
 
