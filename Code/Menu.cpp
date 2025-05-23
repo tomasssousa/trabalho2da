@@ -221,7 +221,7 @@ void handleMainMenuChoice(const int choice) {
                 int result = knapsackBF(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
-                write_output(weights,profits,ChosenAlgo,usedItems,duration.count(),result,usedWeight);
+                write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
             } else if (ChosenAlgo == "Greedy") {
                 unsigned int usedWeight = 0;
                 std::vector<bool> usedItems(numOfPallets,false);
@@ -229,7 +229,7 @@ void handleMainMenuChoice(const int choice) {
                 int result = knapsackGreedyRacio(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
-                write_output(weights,profits,ChosenAlgo,usedItems,duration.count(),result,usedWeight);
+                write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
             }
 
             break;

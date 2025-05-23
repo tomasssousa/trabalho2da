@@ -8,11 +8,11 @@
 #include <vector>
 
 
-inline void write_output(std::vector<int> &weights,std::vector<int> &profits,const std::string& algo,std::vector<bool> &usedItems, const double executionTime, const int maxValue,unsigned int usedWeight) {
+inline void write_output(std::vector<int> &weights,std::vector<int> &profits,const std::string& algo,const std::string& dataset,std::vector<bool> &usedItems, const double executionTime, const int maxValue,unsigned int usedWeight) {
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "              Output Result             " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
-    std::cout << "For the algorithm " << algo << " the results where: " << std::endl;
+    std::cout << "For the algorithm " << algo << " and Dataset: " << dataset <<" the results where: " << std::endl;
     std::cout << "Used Items :" << std::endl;
     for (int i  = 0; i < usedItems.size(); i++) {
 
