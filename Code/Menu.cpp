@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include "Brute_Force.h"
+#include "Greedy_Method.h"
 #include <cmath>
 #include "Write_output.h"
 
@@ -219,10 +220,18 @@ void handleMainMenuChoice(const int choice) {
                 auto start = std::chrono::_V2::high_resolution_clock::now();
                 int result = knapsackBF(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
                 auto end = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> duration = end - start;
+                std::chrono::duration<double,std::milli> duration = end - start;
                 write_output(weights,profits,ChosenAlgo,usedItems,duration.count(),result,usedWeight);
-
+            } else if (ChosenAlgo == "Greedy") {
+                unsigned int usedWeight = 0;
+                std::vector<bool> usedItems(numOfPallets,false);
+                auto start = std::chrono::_V2::high_resolution_clock::now();
+                int result = knapsackGreedyRacio(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double,std::milli> duration = end - start;
+                write_output(weights,profits,ChosenAlgo,usedItems,duration.count(),result,usedWeight);
             }
+
             break;
         default:
             std::cout << "Invalid Choice. Try Again." << std::endl;

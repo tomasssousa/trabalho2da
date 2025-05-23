@@ -20,9 +20,9 @@ unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vect
     for(int i=0;i<n;i++) {usedItems[i]=false;}
     while (!flag) {
         double MaxTempRacio=0.0;
-        int TPosition;
+        int TPosition = -1; //start the TPosition wih an invalid value (which will be updated later)
         for (int i=0; i<n; i++) {
-            double TempRacio =static_cast<double>(profit[i])/weights[i];
+            double TempRacio =static_cast<double>(profits[i])/weights[i];
             if (((TempRacio==MaxTempRacio && weights[i]<weights[TPosition])||TempRacio>MaxTempRacio) && weights[i]<=maxWeight && usedItems[i]==false) {
                 MaxTempRacio=TempRacio;
                 TPosition=i;
@@ -49,7 +49,7 @@ unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vec
     for(int i=0;i<n;i++) {usedItems[i]=false;}
     while (!flag) {
         int maxTProfit=0;
-        int TPosition;
+        int TPosition = -1;
         for (int i=0; i<n; i++) {
             if (((profits[i]==maxTProfit && weights[i]<weights[TPosition])||profits[i]>maxTProfit) && weights[i]<=maxWeight && usedItems[i]==false) {
                 maxTProfit=profits[i];
@@ -70,12 +70,12 @@ unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vec
 }
 
 unsigned int knapsackGreedyOptimal(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight){
-    int usedWeight1=0;
-    int usedWeight2=0;
+    unsigned int usedWeight1 = 0;
+    unsigned int usedWeight2 = 0;
     std::vector<bool> usedItems1(n,false);
     std::vector<bool> usedItems2(n,false);
-    int result1 = knapsackGreedyProfit(profits,weights,n,maxWeight,usedItems1,usedWeight1);
-    int result2 = knapsackGreedyRacio(profits,weights,n,maxWeight,usedItems2,usedWeight2);
+    unsigned int result1 = knapsackGreedyProfit(profits,weights,n,maxWeight,usedItems1,usedWeight1);
+    unsigned int result2 = knapsackGreedyRacio(profits,weights,n,maxWeight,usedItems2,usedWeight2);
     if (result1>result2){
         usedWeight=usedWeight1;
         usedItems=usedItems1;

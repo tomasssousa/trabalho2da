@@ -24,7 +24,7 @@ inline void write_output(std::vector<int> &weights,std::vector<int> &profits,con
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "The result of MaximumProfit was: " << maxValue << std::endl;
     std::cout << "The used total weight was: " << usedWeight << std::endl;
-    std::cout << "The execution time was: " << executionTime << " seconds!"<< std::endl;
+    std::cout << "The execution time was: " << executionTime << " mili seconds!"<< std::endl;
     std::cout << "----------------------------------------" << std::endl;
 
 }
