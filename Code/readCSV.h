@@ -9,8 +9,8 @@ using namespace std;
 
 /**
 * @brief Function to load Data from a TruckAndPallets CSV file!
-* @param parsedCapacity variable which will be used to save the truck's Capacity in terms of Weight
-* @param parsedPallets variable which will be used to save the truck's Capacity in terms of the number of Pallets
+* @param parsedCapacity variable, which will be used to save the truck's Capacity in terms of Weight
+* @param parsedPallets variable, which will be used to save the truck's Capacity in terms of the number of Pallets
 * @param filename file which we will fetch the data
 */
 
@@ -59,62 +59,13 @@ inline void loadTruck(int &parsedCapacity, int &parsedPallets, const std::string
     file.close();
 }
 
+
 /**
-* @brief Function to load Data from a Pallets CSV file!
-* @param parsedWeights the vector which will save all the weights
-* @param parsedProfits the vector which will save all the profits
+* @brief Function to load Data from a Pallets_xx.csv file
+* @param parsedWeights variable, which will be used to store all the weights of all the Pallets
+* @param parsedProfits variable, which will be used to store the profits of all the Pallets
 * @param filename file which we will fetch the data
 */
-
-/*Change this function to instead save the pallets in 2 vectors, weights and profits*/
-/*
-inline void loadPallets(vector<int>&parsedWeights,  vector<int>&parsedProfits, const std::string &filename) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "[FATAL] Error opening file: " << filename << std::endl;
-        return;
-    }
-
-    std::string line;
-    std::getline(file, line); // Skip header
-
-    while (std::getline(file, line)) {
-        if (line.empty()) continue;
-
-        std::stringstream temp(line);
-        std::string id, weight, profit;
-        std::getline(temp, id, ',');
-        std::getline(temp, weight, ',');
-        std::getline(temp, profit);
-
-        if (id.empty() || weight.empty() || profit.empty()) {
-            std::cerr << "[ERROR] Empty field on line: " << line << std::endl;
-            continue;
-        }
-
-        //verify if id and weight and profit are digits
-        if (!std::all_of(id.begin(), id.end(), ::isdigit) ||
-            !std::all_of(weight.begin(), weight.end(), ::isdigit) ||
-            !std::all_of(profit.begin(), profit.end(), ::isdigit)) {
-            std::cerr << "[ERROR] Non-numeric field(s): Id='" << id << "', Weight='" << weight << "', Profit='" << profit << "'\n";
-            continue;
-        }
-
-        try {
-            parsedWeights.push_back(stoi(weight));
-            parsedProfits.push_back(stoi(profit));
-
-            std::cout << "[INFO] Parsed: Id='" << id << "', Weight='" << weight << "', Profit='" << profit << "'\n";
-
-        } catch (const std::exception &e) {
-            std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
-        }
-    }
-
-    file.close();
-}
-*/
-
 inline void loadPallets(std::vector<int>& parsedWeights,
                         std::vector<int>& parsedProfits,
                         const std::string &filename) {
@@ -185,110 +136,4 @@ inline void loadPallets(std::vector<int>& parsedWeights,
 }
 
 
-/**
-* @brief Function to load Data from a TruckAndPallets CSV file!
-* @param filename file which we will fetch the data
-*/
-/*
-inline void loadTruck(const std::string &filename) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return;
-    }
 
-    std::string line;
-    std::getline(file, line); // Skip header
-
-    while (std::getline(file, line)) {
-        if (line.empty()) continue;
-
-        std::stringstream temp(line);
-        std::string capacity, pallets;
-        std::getline(temp, capacity, ',');
-        std::getline(temp, pallets);
-
-        // verify if the string is empty
-        if (capacity.empty() || pallets.empty()) {
-            std::cerr << "[ERROR] Invalid line skipped (missing truck capacity or number of pallets): " << line << std::endl;
-            continue;
-        }
-
-        //verify if capacity and pallets are digits
-        if (!std::all_of(capacity.begin(), capacity.end(), ::isdigit) ||
-            !std::all_of(pallets.begin(), pallets.end(), ::isdigit)) {
-            std::cerr << "[ERROR] Non-numeric field(s): Capacity='" << capacity << "', Pallets='" << pallets << "'\n";
-            continue;
-        }
-
-        try {
-            Truck truck;
-            truck.capacity = stoi(capacity);
-            truck.pallets = stoi(pallets);
-            truckvec.push_back(truck);
-
-            std::cout << "[INFO] Parsed: Capacity='" << truck.capacity << "', Pallets='" << truck.pallets << "'\n";
-
-        } catch (const std::exception &e) {
-            std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
-        }
-    }
-
-    file.close();
-}
-*/
-
-/**
-* @brief Function to load Data from a Pallets CSV file!
-* @param filename file which we will fetch the data
-*/
-/*
-inline void loadPallets(const std::string &filename) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "[FATAL] Error opening file: " << filename << std::endl;
-        return;
-    }
-
-    std::string line;
-    std::getline(file, line); // Skip header
-
-    while (std::getline(file, line)) {
-        if (line.empty()) continue;
-
-        std::stringstream temp(line);
-        std::string id, weight, profit;
-        std::getline(temp, id, ',');
-        std::getline(temp, weight, ',');
-        std::getline(temp, profit);
-
-        if (id.empty() || weight.empty() || profit.empty()) {
-            std::cerr << "[ERROR] Empty field on line: " << line << std::endl;
-            continue;
-        }
-
-        //verify if id and parking are digits
-        if (!std::all_of(id.begin(), id.end(), ::isdigit) ||
-            !std::all_of(weight.begin(), weight.end(), ::isdigit ||
-            !std::all_of(profit.begin(), profit.end(), ::isdigit))) {
-            std::cerr << "[ERROR] Non-numeric field(s): Id='" << id << "', Weight='" << weight << "', Profit='" << profit << "'\n";
-            continue;
-        }
-
-        try {
-            Pallet pallet;
-            int palletId = stoi(id);
-            pallet.weight = stoi(weight);
-            pallet.profit = stoi(profit);
-            palletmap[palletId] = pallet;
-
-            std::cout << "[INFO] Parsed: Id='" << palletId << "', Weight='" << pallet.weight << "', Profit='" << pallet.profit << "'\n";
-
-        } catch (const std::exception &e) {
-            std::cerr << "[FATAL] Error converting line: " << line << " -> " << e.what() << std::endl;
-        }
-    }
-
-    file.close();
-}
-*/

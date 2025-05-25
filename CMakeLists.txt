@@ -18,10 +18,8 @@ add_executable(Project2
         Code/Menu.cpp
         Code/Menu.h
         Code/readCSV.h
-        Code/Pallet.h
         Code/Brute_Force.h
         Code/Dynamic_Programming.h
-        Code/Truck.h
         Code/Write_output.h
         Code/Greedy_Method.h
 )
