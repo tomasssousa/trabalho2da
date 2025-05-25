@@ -58,7 +58,9 @@ enum ExtraDataSetsChoices {
 enum AlgorithmChoices {
     BRUTE_FORCE = 1,
     DYNAMIC,
-    GREEDY,
+    GREEDY_NORMAL,
+    GREEDY_RATIO,
+    GREEDY_OPTIMAL,
     INTEGER,
     ALGO_BACK_TO_MAIN
 };
@@ -160,9 +162,11 @@ void chooseAlgorithm() {
     std::cout << "Choose which algorithm to solve the problem" << std::endl;
     std::cout << "1.Brute-Force" << std::endl;
     std::cout << "2.Dynamic Programming" << std::endl;
-    std::cout << "3.Greedy (weight-profit ratio)" << std::endl;
-    std::cout << "4.Integer Linear Programming" << std::endl;
-    std::cout << "5.Go Back to Main Menu" << std::endl;
+    std::cout << "3.Greedy (normal solution)" << std::endl;
+    std::cout << "4.Greedy (weight-profit ratio)" << std::endl;
+    std::cout << "5.Greedy (optimal solution (does both algorithms and compares))" << std::endl;
+    std::cout << "6.Integer Linear Programming" << std::endl;
+    std::cout << "7.Go Back to Main Menu" << std::endl;
 }
 
 void displayAboutMenu() {
@@ -285,10 +289,17 @@ void handleMainMenuChoice(const int choice) {
                 } else if (algoChoice == DYNAMIC) {
                     ChosenAlgo = "Dynamic Prog";
                     break;
-                } else if (algoChoice == GREEDY) {
-                    ChosenAlgo = "Greedy";
+                } else if (algoChoice == GREEDY_NORMAL) {
+                    ChosenAlgo = "Greedy Normal";
                     break;
-                } else if (algoChoice == INTEGER) {
+                } else if (algoChoice == GREEDY_RATIO) {
+                    ChosenAlgo = "Greedy Ratio";
+                    break;
+                } else if (algoChoice == GREEDY_OPTIMAL){
+                    ChosenAlgo = "Greedy Optimal";
+                    break;
+                }
+                else if (algoChoice == INTEGER) {
                     ChosenAlgo = "Integer";
                     break;
                 } else if (algoChoice == ALGO_BACK_TO_MAIN) {
@@ -307,7 +318,8 @@ void handleMainMenuChoice(const int choice) {
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
                 write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
-            } else if (ChosenAlgo == "Dynamic Prog") {
+            }
+            else if (ChosenAlgo == "Dynamic Prog") {
                 unsigned int usedWeight = 0;
                 std::vector<bool> usedItems(numOfPallets,false);
                 auto start = std::chrono::_V2::high_resolution_clock::now();
@@ -315,7 +327,17 @@ void handleMainMenuChoice(const int choice) {
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
                 write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
-            } else if (ChosenAlgo == "Greedy") {
+            } else if (ChosenAlgo == "Greedy Normal") {
+                unsigned int usedWeight = 0;
+                std::vector<bool> usedItems(numOfPallets,false);
+                auto start = std::chrono::_V2::high_resolution_clock::now();
+                int result = knapsackGreedyProfit(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double,std::milli> duration = end - start;
+                write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
+            }
+
+            else if (ChosenAlgo == "Greedy Ratio") {
                 unsigned int usedWeight = 0;
                 std::vector<bool> usedItems(numOfPallets,false);
                 auto start = std::chrono::_V2::high_resolution_clock::now();
@@ -323,7 +345,17 @@ void handleMainMenuChoice(const int choice) {
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
                 write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
-            } else {
+            } else if (ChosenAlgo == "Greedy Optimal") {
+                unsigned int usedWeight = 0;
+                std::vector<bool> usedItems(numOfPallets,false);
+                auto start = std::chrono::_V2::high_resolution_clock::now();
+                int result = knapsackGreedyOptimal(profits,weights,numOfPallets,capacity,usedItems,usedWeight);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double,std::milli> duration = end - start;
+                write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
+            }
+
+            else {
                 std::cout << "Please choose an algorithm first!" << std::endl;
             }
             break;
