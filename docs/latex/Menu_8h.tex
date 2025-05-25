@@ -1,0 +1,78 @@
+\doxysection{Code/\+Menu.h File Reference}
+\hypertarget{Menu_8h}{}\label{Menu_8h}\index{Code/Menu.h@{Code/Menu.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Menu.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{Menu_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{Menu_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Menu_8h_a811acbca263e815b861d9c1e65177cad}{display\+Intro\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a8500b83883310d415dbe266e1515cb85}{display\+About\+Menu}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a4dcd873e469fd9d0c8c09dda397c8f08}{display\+Datasets\+Options}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_af323790dc1f163de8b19327d6547d22a}{display\+Extra\+Datasets\+Options}} ()
+\item 
+void \mbox{\hyperlink{Menu_8h_a8533c2f62802cbc2a98effc7db097805}{handle\+Main\+Menu\+Choice}} (int choice)
+\item 
+void \mbox{\hyperlink{Menu_8h_aa62e4dc722666605a748f1d7ae6e461a}{handle\+\_\+csv}} (int \&\mbox{\hyperlink{Menu_8cpp_adbe66a087ac3fd4a5b0566f64ca2d12b}{capacity}}, int \&num\+Pallets, std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}, std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}, const std\+::string \&filename\+\_\+truck, const std\+::string \&filename\+\_\+pallet)
+\begin{DoxyCompactList}\small\item\em Displays the introductory menu with different options for the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Menu_8h_a8500b83883310d415dbe266e1515cb85}\label{Menu_8h_a8500b83883310d415dbe266e1515cb85} 
+\index{Menu.h@{Menu.h}!displayAboutMenu@{displayAboutMenu}}
+\index{displayAboutMenu@{displayAboutMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayAboutMenu()}{displayAboutMenu()}}
+{\footnotesize\ttfamily void display\+About\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a4dcd873e469fd9d0c8c09dda397c8f08}\label{Menu_8h_a4dcd873e469fd9d0c8c09dda397c8f08} 
+\index{Menu.h@{Menu.h}!displayDatasetsOptions@{displayDatasetsOptions}}
+\index{displayDatasetsOptions@{displayDatasetsOptions}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayDatasetsOptions()}{displayDatasetsOptions()}}
+{\footnotesize\ttfamily void display\+Datasets\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_af323790dc1f163de8b19327d6547d22a}\label{Menu_8h_af323790dc1f163de8b19327d6547d22a} 
+\index{Menu.h@{Menu.h}!displayExtraDatasetsOptions@{displayExtraDatasetsOptions}}
+\index{displayExtraDatasetsOptions@{displayExtraDatasetsOptions}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayExtraDatasetsOptions()}{displayExtraDatasetsOptions()}}
+{\footnotesize\ttfamily void display\+Extra\+Datasets\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_a811acbca263e815b861d9c1e65177cad}\label{Menu_8h_a811acbca263e815b861d9c1e65177cad} 
+\index{Menu.h@{Menu.h}!displayIntroMenu@{displayIntroMenu}}
+\index{displayIntroMenu@{displayIntroMenu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{displayIntroMenu()}{displayIntroMenu()}}
+{\footnotesize\ttfamily void display\+Intro\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{Menu_8h_aa62e4dc722666605a748f1d7ae6e461a}\label{Menu_8h_aa62e4dc722666605a748f1d7ae6e461a} 
+\index{Menu.h@{Menu.h}!handle\_csv@{handle\_csv}}
+\index{handle\_csv@{handle\_csv}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{handle\_csv()}{handle\_csv()}}
+{\footnotesize\ttfamily void handle\+\_\+csv (\begin{DoxyParamCaption}\item[{int \&}]{capacity,  }\item[{int \&}]{num\+Pallets,  }\item[{std\+::vector$<$ int $>$ \&}]{weights,  }\item[{std\+::vector$<$ int $>$ \&}]{profits,  }\item[{const std\+::string \&}]{filename\+\_\+truck,  }\item[{const std\+::string \&}]{filename\+\_\+pallet }\end{DoxyParamCaption})}
+
+
+
+Displays the introductory menu with different options for the user. 
+
+This function outputs a structured and visually clear menu to the console. The menu provides information about the options available in the program, including loading files, displaying map information, route planning, and more. The menu also serves as an entry point for the user to interact with the application. \Hypertarget{Menu_8h_a8533c2f62802cbc2a98effc7db097805}\label{Menu_8h_a8533c2f62802cbc2a98effc7db097805} 
+\index{Menu.h@{Menu.h}!handleMainMenuChoice@{handleMainMenuChoice}}
+\index{handleMainMenuChoice@{handleMainMenuChoice}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{handleMainMenuChoice()}{handleMainMenuChoice()}}
+{\footnotesize\ttfamily void handle\+Main\+Menu\+Choice (\begin{DoxyParamCaption}\item[{int}]{choice }\end{DoxyParamCaption})}
+

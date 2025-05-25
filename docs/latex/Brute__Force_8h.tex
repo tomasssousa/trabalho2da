@@ -1,0 +1,54 @@
+\doxysection{Code/\+Brute\+\_\+\+Force.h File Reference}
+\hypertarget{Brute__Force_8h}{}\label{Brute__Force_8h}\index{Code/Brute\_Force.h@{Code/Brute\_Force.h}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$bitset$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Brute\+\_\+\+Force.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{Brute__Force_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{Brute__Force_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{Brute__Force_8h_a5198e9ac811ccfc5666cc54d8136b641}{knapsack\+BF}} (const std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}, const std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}, unsigned int n, unsigned int max\+Weight, std\+::vector$<$ bool $>$ \&used\+Items, unsigned int \&used\+Weight)
+\begin{DoxyCompactList}\small\item\em This function is responsible for calculating the optimal setup, using the brute force method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Brute__Force_8h_a5198e9ac811ccfc5666cc54d8136b641}\label{Brute__Force_8h_a5198e9ac811ccfc5666cc54d8136b641} 
+\index{Brute\_Force.h@{Brute\_Force.h}!knapsackBF@{knapsackBF}}
+\index{knapsackBF@{knapsackBF}!Brute\_Force.h@{Brute\_Force.h}}
+\doxysubsubsection{\texorpdfstring{knapsackBF()}{knapsackBF()}}
+{\footnotesize\ttfamily unsigned int knapsack\+BF (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{profits,  }\item[{const std\+::vector$<$ int $>$ \&}]{weights,  }\item[{unsigned int}]{n,  }\item[{unsigned int}]{max\+Weight,  }\item[{std\+::vector$<$ bool $>$ \&}]{used\+Items,  }\item[{unsigned int \&}]{used\+Weight }\end{DoxyParamCaption})}
+
+
+
+This function is responsible for calculating the optimal setup, using the brute force method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pallets} & A map with the pallets to be used in the problem, identifiable by their id. \\
+\hline
+{\em n} & Number of Pallets. \\
+\hline
+{\em max\+Weight} & Max possible weight. \\
+\hline
+{\em used\+Items\mbox{[}$\,$\mbox{]}} & An array with items used marked in true or false Could be changed to store the id of the used ones \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The integer with the optimal value. 
+\end{DoxyReturn}

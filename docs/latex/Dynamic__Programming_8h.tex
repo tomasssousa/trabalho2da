@@ -1,0 +1,57 @@
+\doxysection{Code/\+Dynamic\+\_\+\+Programming.h File Reference}
+\hypertarget{Dynamic__Programming_8h}{}\label{Dynamic__Programming_8h}\index{Code/Dynamic\_Programming.h@{Code/Dynamic\_Programming.h}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Dynamic\+\_\+\+Programming.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{Dynamic__Programming_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{Dynamic__Programming_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{Dynamic__Programming_8h_abe645a309eb87c12d50b7693f065b2e2}{knapsack\+DP}} (const std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}, const std\+::vector$<$ int $>$ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}, unsigned int n, unsigned int max\+Weight, std\+::vector$<$ bool $>$ \&used\+Items, unsigned int \&used\+Weight)
+\begin{DoxyCompactList}\small\item\em This function is responsible for calculating the optimal setup, using Dynamic Programming. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Dynamic__Programming_8h_abe645a309eb87c12d50b7693f065b2e2}\label{Dynamic__Programming_8h_abe645a309eb87c12d50b7693f065b2e2} 
+\index{Dynamic\_Programming.h@{Dynamic\_Programming.h}!knapsackDP@{knapsackDP}}
+\index{knapsackDP@{knapsackDP}!Dynamic\_Programming.h@{Dynamic\_Programming.h}}
+\doxysubsubsection{\texorpdfstring{knapsackDP()}{knapsackDP()}}
+{\footnotesize\ttfamily unsigned int knapsack\+DP (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{profits,  }\item[{const std\+::vector$<$ int $>$ \&}]{weights,  }\item[{unsigned int}]{n,  }\item[{unsigned int}]{max\+Weight,  }\item[{std\+::vector$<$ bool $>$ \&}]{used\+Items,  }\item[{unsigned int \&}]{used\+Weight }\end{DoxyParamCaption})}
+
+
+
+This function is responsible for calculating the optimal setup, using Dynamic Programming. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profits} & Vector of profits for each item \\
+\hline
+{\em weights} & Vector of weights for each item \\
+\hline
+{\em n} & Number of Pallets. \\
+\hline
+{\em max\+Weight} & Max possible weight. \\
+\hline
+{\em used\+Items} & Vector with items used marked as true or false \\
+\hline
+{\em used\+Weight} & Reference to store the total used weight \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The integer with the optimal value. 
+\end{DoxyReturn}

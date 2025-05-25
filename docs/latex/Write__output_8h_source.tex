@@ -1,0 +1,43 @@
+\doxysection{Write\+\_\+output.\+h}
+\hypertarget{Write__output_8h_source}{}\label{Write__output_8h_source}\index{Code/Write\_output.h@{Code/Write\_output.h}}
+\mbox{\hyperlink{Write__output_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ gustavo-\/louren-\/o\ on\ 5/20/25.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ WRITE\_OUTPUT\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ WRITE\_OUTPUT\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{Write__output_8h_a6cf9a97e975524482596622883e2e119}{write\_output}}(std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\ \textcolor{keyword}{const}\ std::string\&\ algo,\ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ dataset,\ std::vector<bool>\ \&usedItems,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ executionTime,\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxValue,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ usedWeight)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00016\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ Output\ Result\ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{00017\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00018\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}For\ the\ algorithm\ "{}}\ <<\ algo\ <<\ \textcolor{stringliteral}{"{}\ and\ Dataset:\ "{}}\ <<\ dataset\ <<\ \textcolor{stringliteral}{"{}\ the\ results\ were:\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{00019\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Used\ Items:"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ usedItems.size();\ i++)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (usedItems[i]\ ==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ Item\ used:\ "{}}\ <<\ i\ +\ 1\ <<\ \textcolor{stringliteral}{"{}\ With\ weight:\ "{}}\ <<\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ and\ profit:\ "{}}\ <<\ \mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i]\ <<\ std::endl;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00029\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00030\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ result\ of\ MaximumProfit\ was:\ "{}}\ <<\ maxValue\ <<\ std::endl;}
+\DoxyCodeLine{00031\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ used\ total\ weight\ was:\ "{}}\ <<\ usedWeight\ <<\ std::endl;}
+\DoxyCodeLine{00032\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ execution\ time\ was:\ "{}}\ <<\ executionTime\ <<\ \textcolor{stringliteral}{"{}\ milliseconds!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00033\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//WRITE\_OUTPUT\_H}}
+
+\end{DoxyCode}

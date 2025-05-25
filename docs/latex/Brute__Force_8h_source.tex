@@ -1,0 +1,43 @@
+\doxysection{Brute\+\_\+\+Force.\+h}
+\hypertarget{Brute__Force_8h_source}{}\label{Brute__Force_8h_source}\index{Code/Brute\_Force.h@{Code/Brute\_Force.h}}
+\mbox{\hyperlink{Brute__Force_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BRUTE\_FORCE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BRUTE\_FORCE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <bitset>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Brute__Force_8h_a5198e9ac811ccfc5666cc54d8136b641}{knapsackBF}}(\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ std::vector<bool>\ \&usedItems,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&usedWeight)\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//total\ number\ of\ possibilities\ for\ arranging\ the\ truck,\ not\ counting\ weight\ limitations}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ Iteration\ =\ pow(2,n);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ MaxPossibleValue\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ Iteration;\ i++)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//binary\ representation\ of\ the\ truck\ layout.}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::bitset<2048>\ binarySub(i);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ IterationP=0;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ IterationW=0;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=0;\ j<n;j++)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ IterationP+=\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[j]*binarySub[j];}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ IterationW+=\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[j]*binarySub[j];}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IterationW\ <=\ maxWeight\ \&\&\ ((IterationP\ >\ MaxPossibleValue)\ ||\ (IterationP\ ==\ MaxPossibleValue\ \&\&\ usedWeight\ >\ IterationW)))\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ MaxPossibleValue=IterationP;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ usedWeight\ =\ IterationW;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j=0;\ j<n;j++)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (binarySub[j]==1)\ \{usedItems[j]=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{usedItems[j]=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ MaxPossibleValue;}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//BRUTE\_FORCE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,59 @@
+\doxysection{Dynamic\+\_\+\+Programming.\+h}
+\hypertarget{Dynamic__Programming_8h_source}{}\label{Dynamic__Programming_8h_source}\index{Code/Dynamic\_Programming.h@{Code/Dynamic\_Programming.h}}
+\mbox{\hyperlink{Dynamic__Programming_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DYNAMIC\_PROGRAMMING\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DYNAMIC\_PROGRAMMING\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Dynamic__Programming_8h_abe645a309eb87c12d50b7693f065b2e2}{knapsackDP}}(\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\ \textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ std::vector<bool>\ \&usedItems,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&usedWeight)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<std::vector<unsigned\ int>>\ maxValue(n,\ std::vector<unsigned\ int>(maxWeight\ +\ 1,\ 0));}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Step\ 1:\ Initialize\ the\ DP\ matrix\ with\ the\ values\ for\ the\ base\ cases}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <=\ maxWeight;\ k++)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ maxValue[0][k]\ =\ (k\ >=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[0])\ ?\ \mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[0]\ :\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Step\ 2:\ Compute\ values\ of\ the\ DP\ matrix\ for\ the\ recursive\ cases}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <=\ maxWeight;\ k++)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(k\ <\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i])\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxValue[i][k]\ =\ maxValue[i\ -\/\ 1][k];}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ valueUsingItemI\ =\ maxValue[i\ -\/\ 1][k\ -\/\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]]\ +\ \mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i];}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxValue[i][k]\ =\ std::max(maxValue[i\ -\/\ 1][k],\ valueUsingItemI);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Step\ 3:\ Build\ the\ answer}}
+\DoxyCodeLine{00039\ \ \ \ \ std::fill(usedItems.begin(),\ usedItems.end(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ w\ =\ maxWeight;\ \ \textcolor{comment}{//\ Peso\ restante}}
+\DoxyCodeLine{00041\ \ \ \ \ usedWeight\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ n\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ 0)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(w\ >=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[0]\ \&\&\ maxValue[0][w]\ >\ 0)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usedItems[0]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usedWeight\ +=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[0];}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ -\/=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[0];}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(w\ >=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]\ \&\&\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxValue[i][w]\ ==\ maxValue[i-\/1][w\ -\/\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]]\ +\ \mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i])\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usedItems[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usedWeight\ +=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i];}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ -\/=\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i];}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ maxValue[n-\/1][maxWeight];}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DYNAMIC\_PROGRAMMING\_H}}
+
+\end{DoxyCode}

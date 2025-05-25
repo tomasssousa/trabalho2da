@@ -1,0 +1,71 @@
+\doxysection{Code/read\+CSV.h File Reference}
+\hypertarget{readCSV_8h}{}\label{readCSV_8h}\index{Code/readCSV.h@{Code/readCSV.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for read\+CSV.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{readCSV_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{readCSV_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{readCSV_8h_a74697b76bb8f71e0e8c459a1db8ecd17}{load\+Truck}} (int \&parsed\+Capacity, int \&parsed\+Pallets, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Function to load Data from a Truck\+And\+Pallets CSV file! \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{readCSV_8h_a3c35c1e6546701402e9cc60d414ba4ea}{load\+Pallets}} (std\+::vector$<$ int $>$ \&parsed\+Weights, std\+::vector$<$ int $>$ \&parsed\+Profits, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Function to load Data from a Pallets\+\_\+xx.\+csv file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{readCSV_8h_a3c35c1e6546701402e9cc60d414ba4ea}\label{readCSV_8h_a3c35c1e6546701402e9cc60d414ba4ea} 
+\index{readCSV.h@{readCSV.h}!loadPallets@{loadPallets}}
+\index{loadPallets@{loadPallets}!readCSV.h@{readCSV.h}}
+\doxysubsubsection{\texorpdfstring{loadPallets()}{loadPallets()}}
+{\footnotesize\ttfamily void load\+Pallets (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{parsed\+Weights,  }\item[{std\+::vector$<$ int $>$ \&}]{parsed\+Profits,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to load Data from a Pallets\+\_\+xx.\+csv file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parsed\+Weights} & variable, which will be used to store all the weights of all the Pallets \\
+\hline
+{\em parsed\+Profits} & variable, which will be used to store the profits of all the Pallets \\
+\hline
+{\em filename} & file which we will fetch the data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{readCSV_8h_a74697b76bb8f71e0e8c459a1db8ecd17}\label{readCSV_8h_a74697b76bb8f71e0e8c459a1db8ecd17} 
+\index{readCSV.h@{readCSV.h}!loadTruck@{loadTruck}}
+\index{loadTruck@{loadTruck}!readCSV.h@{readCSV.h}}
+\doxysubsubsection{\texorpdfstring{loadTruck()}{loadTruck()}}
+{\footnotesize\ttfamily void load\+Truck (\begin{DoxyParamCaption}\item[{int \&}]{parsed\+Capacity,  }\item[{int \&}]{parsed\+Pallets,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to load Data from a Truck\+And\+Pallets CSV file! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parsed\+Capacity} & variable, which will be used to save the truck\textquotesingle{}s Capacity in terms of Weight \\
+\hline
+{\em parsed\+Pallets} & variable, which will be used to save the truck\textquotesingle{}s Capacity in terms of the number of Pallets \\
+\hline
+{\em filename} & file which we will fetch the data \\
+\hline
+\end{DoxyParams}

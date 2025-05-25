@@ -1,0 +1,90 @@
+\doxysection{Greedy\+\_\+\+Method.\+h}
+\hypertarget{Greedy__Method_8h_source}{}\label{Greedy__Method_8h_source}\index{Code/Greedy\_Method.h@{Code/Greedy\_Method.h}}
+\mbox{\hyperlink{Greedy__Method_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREEDY\_METHOD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREEDY\_METHOD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Greedy__Method_8h_a1da08b20b0cea28a8b80cec6256672b0}{knapsackGreedyRacio}}(\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ std::vector<bool>\ \&usedItems,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&usedWeight)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ MaxProfit=0;}
+\DoxyCodeLine{00009\ \ \ \ \ usedWeight=0;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{bool}\ flag=\textcolor{keyword}{false};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ PossibleItem=\textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<n;i++)\ \{usedItems[i]=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{while}\ (!flag)\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ MaxTempRacio=0.0;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ TPosition\ =\ -\/1;\ \textcolor{comment}{//start\ the\ TPosition\ wih\ an\ invalid\ value\ (which\ will\ be\ updated\ later)}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<n;\ i++)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ TempRacio\ =\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i])/\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i];}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((TempRacio==MaxTempRacio\ \&\&\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]<\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition])||TempRacio>MaxTempRacio)\ \&\&\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]<=maxWeight\ \&\&\ usedItems[i]==\textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MaxTempRacio=TempRacio;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TPosition=i;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PossibleItem=\textcolor{keyword}{true};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (PossibleItem)\{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ MaxProfit+=\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[TPosition];}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ maxWeight-\/=\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition];}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ usedWeight+=\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition];}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ usedItems[TPosition]=\textcolor{keyword}{true};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ PossibleItem=\textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{flag=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ MaxProfit;}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Greedy__Method_8h_a282ffdbcd255da7af7430caa4e577e23}{knapsackGreedyProfit}}(\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ std::vector<bool>\ \&usedItems,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&usedWeight)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ MaxProfit=0;}
+\DoxyCodeLine{00039\ \ \ \ \ usedWeight=0;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ flag=\textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ PossibleItem=\textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<n;i++)\ \{usedItems[i]=\textcolor{keyword}{false};\}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{while}\ (!flag)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxTProfit=0;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ TPosition\ =\ -\/1;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i<n;\ i++)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i]==maxTProfit\ \&\&\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]<\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition])||\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i]>maxTProfit)\ \&\&\ \mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[i]<=maxWeight\ \&\&\ usedItems[i]==\textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxTProfit=\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}}[i];}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TPosition=i;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PossibleItem=\textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (PossibleItem)\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ MaxProfit+=maxTProfit;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ maxWeight-\/=\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition];}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ usedWeight+=\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}}[TPosition];}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ usedItems[TPosition]=\textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ PossibleItem=\textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{flag=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ MaxProfit;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Greedy__Method_8h_abb394d0d67e1285ce07c7a016e329018}{knapsackGreedyOptimal}}(\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\textcolor{keyword}{const}\ std::vector<int>\ \&\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ std::vector<bool>\ \&usedItems,\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&usedWeight)\{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ usedWeight1\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ usedWeight2\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ std::vector<bool>\ usedItems1(n,\textcolor{keyword}{false});}
+\DoxyCodeLine{00069\ \ \ \ \ std::vector<bool>\ usedItems2(n,\textcolor{keyword}{false});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ result1\ =\ \mbox{\hyperlink{Greedy__Method_8h_a282ffdbcd255da7af7430caa4e577e23}{knapsackGreedyProfit}}(\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},n,maxWeight,usedItems1,usedWeight1);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ result2\ =\ \mbox{\hyperlink{Greedy__Method_8h_a1da08b20b0cea28a8b80cec6256672b0}{knapsackGreedyRacio}}(\mbox{\hyperlink{Menu_8cpp_af599786273562b7127857905003d7ea4}{profits}},\mbox{\hyperlink{Menu_8cpp_a48b34f7b46e03391c5d77f002d05928c}{weights}},n,maxWeight,usedItems2,usedWeight2);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (result1>result2)\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ usedWeight=usedWeight1;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ usedItems=usedItems1;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result1;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ usedWeight=usedWeight2;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ usedItems=usedItems2;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result2;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//GREEDY\_METHOD\_H}}
+
+\end{DoxyCode}
