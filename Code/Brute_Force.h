@@ -9,11 +9,13 @@
 using namespace std;
 
 /**
-* @brief This function is responsible for calculating the optimal setup, using the brute force method.
-* @param Pallets A map with the pallets to be used in the problem, identifiable by their id.
-* @param n Number of Pallets.
-* @param maxWeight Max possible weight.
-* @param usedItems[] An array with items used marked in true or false             Could be changed to store the id of the used ones
+* @brief This function is responsible for calculating the optimal setup using the brute force method.
+* @param profits Vector of profits for each item.
+* @param weights Vector of weights for each item.
+* @param n Number of items.
+* @param maxWeight Max possible weight capacity.
+* @param usedItems Vector with items used marked as true or false.
+* @param usedWeight Reference to store the total used weight.
 * @return The integer with the optimal value.
 */
 unsigned int knapsackBF(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {

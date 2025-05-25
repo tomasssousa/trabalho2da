@@ -114,7 +114,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5198e9ac811ccfc5666cc54d8136b641" id="r_a5198e9ac811ccfc5666cc54d8136b641"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Brute__Force_8h.html#a5198e9ac811ccfc5666cc54d8136b641">knapsackBF</a> (const std::vector&lt; int &gt; &amp;<a class="el" href="Menu_8cpp.html#af599786273562b7127857905003d7ea4">profits</a>, const std::vector&lt; int &gt; &amp;<a class="el" href="Menu_8cpp.html#a48b34f7b46e03391c5d77f002d05928c">weights</a>, unsigned int n, unsigned int maxWeight, std::vector&lt; bool &gt; &amp;usedItems, unsigned int &amp;usedWeight)</td></tr>
-<tr class="memdesc:a5198e9ac811ccfc5666cc54d8136b641"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for calculating the optimal setup, using the brute force method.  <br /></td></tr>
+<tr class="memdesc:a5198e9ac811ccfc5666cc54d8136b641"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for calculating the optimal setup using the brute force method.  <br /></td></tr>
 <tr class="separator:a5198e9ac811ccfc5666cc54d8136b641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -168,13 +168,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for calculating the optimal setup, using the brute force method. </p>
+<p>This function is responsible for calculating the optimal setup using the brute force method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Pallets</td><td>A map with the pallets to be used in the problem, identifiable by their id. </td></tr>
-    <tr><td class="paramname">n</td><td>Number of Pallets. </td></tr>
-    <tr><td class="paramname">maxWeight</td><td>Max possible weight. </td></tr>
-    <tr><td class="paramname">usedItems[]</td><td>An array with items used marked in true or false Could be changed to store the id of the used ones </td></tr>
+    <tr><td class="paramname">profits</td><td>Vector of profits for each item. </td></tr>
+    <tr><td class="paramname">weights</td><td>Vector of weights for each item. </td></tr>
+    <tr><td class="paramname">n</td><td>Number of items. </td></tr>
+    <tr><td class="paramname">maxWeight</td><td>Max possible weight capacity. </td></tr>
+    <tr><td class="paramname">usedItems</td><td>Vector with items used marked as true or false. </td></tr>
+    <tr><td class="paramname">usedWeight</td><td>Reference to store the total used weight. </td></tr>
   </table>
   </dd>
 </dl>

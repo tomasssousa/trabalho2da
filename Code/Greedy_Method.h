@@ -4,6 +4,16 @@
 #include <vector>
 
 
+/**
+* @brief This function is responsible for calculating the optimal setup using the greedy method based on profit-to-weight ratio.
+* @param profits Vector of profits for each item.
+* @param weights Vector of weights for each item.
+* @param n Number of items.
+* @param maxWeight Max possible weight capacity.
+* @param usedItems Vector with items used marked as true or false.
+* @param usedWeight Reference to store the total used weight.
+* @return The integer with the greedy solution value based on ratio.
+*/
 unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
     unsigned int MaxProfit=0;
     usedWeight=0;
@@ -34,6 +44,16 @@ unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vect
     return MaxProfit;
 }
 
+/**
+* @brief This function is responsible for calculating the optimal setup using the greedy method based on highest profit first.
+* @param profits Vector of profits for each item.
+* @param weights Vector of weights for each item.
+* @param n Number of items.
+* @param maxWeight Max possible weight capacity.
+* @param usedItems Vector with items used marked as true or false.
+* @param usedWeight Reference to store the total used weight.
+* @return The integer with the greedy solution value based on profit.
+*/
 unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
     unsigned int MaxProfit=0;
     usedWeight=0;
@@ -62,6 +82,16 @@ unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vec
     return MaxProfit;
 }
 
+/**
+* @brief This function is responsible for calculating the optimal setup using the best of two greedy approaches.
+* @param profits Vector of profits for each item.
+* @param weights Vector of weights for each item.
+* @param n Number of items.
+* @param maxWeight Max possible weight capacity.
+* @param usedItems Vector with items used marked as true or false.
+* @param usedWeight Reference to store the total used weight.
+* @return The integer with the better greedy solution value between ratio and profit methods.
+*/
 unsigned int knapsackGreedyOptimal(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight){
     unsigned int usedWeight1 = 0;
     unsigned int usedWeight2 = 0;
