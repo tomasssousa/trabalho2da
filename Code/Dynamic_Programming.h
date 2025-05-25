@@ -35,25 +35,24 @@ unsigned int knapsackDP(const std::vector<int> &profits, const std::vector<int> 
         }
     }
 
-    // Step 3: Build the solution
+    // Step 3: Build the answer
     std::fill(usedItems.begin(), usedItems.end(), false);
-    unsigned int currentWeight = maxWeight;
+    unsigned int w = maxWeight;  // Peso restante
     usedWeight = 0;
+    
     for(int i = n - 1; i >= 0; i--) {
         if(i == 0) {
-            // Special check for the first item
-            if(currentWeight >= weights[0] && maxValue[0][currentWeight] == profits[0]) {
+            if(w >= weights[0] && maxValue[0][w] > 0) {
                 usedItems[0] = true;
                 usedWeight += weights[0];
-                currentWeight -= weights[0];
+                w -= weights[0];
             }
         } else {
-            // Check if item i was included in the optimal solution
-            // Item i is included if removing it changes the optimal value
-            if(maxValue[i][currentWeight] != maxValue[i-1][currentWeight]) {
+            if(w >= weights[i] && 
+               maxValue[i][w] == maxValue[i-1][w - weights[i]] + profits[i]) {
                 usedItems[i] = true;
                 usedWeight += weights[i];
-                currentWeight -= weights[i];
+                w -= weights[i];
             }
         }
     }
