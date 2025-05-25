@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Project2.dir/Code/Main.cpp.o CMakeFiles/Project2.dir/Code/Menu.cpp.o -o Project2 

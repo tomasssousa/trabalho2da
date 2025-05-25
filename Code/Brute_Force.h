@@ -23,13 +23,13 @@ unsigned int knapsackBF(const std::vector<int> &profits,const std::vector<int> &
     for(unsigned int i = 0; i < Iteration; i++) {
         //binary representation of the truck layout.
         std::bitset<2048> binarySub(i);
-        int IterationP=0;
-        int IterationW=0;
+        unsigned int IterationP=0;
+        unsigned int IterationW=0;
         for (int j=0; j<n;j++) {
             IterationP+=profits[j]*binarySub[j];
             IterationW+=weights[j]*binarySub[j];
         }
-        if (IterationW<=maxWeight && (IterationP>MaxPossibleValue) || (IterationP == MaxPossibleValue && usedWeight > IterationW)) {
+        if (IterationW <= maxWeight && ((IterationP > MaxPossibleValue) || (IterationP == MaxPossibleValue && usedWeight > IterationW))) {
             MaxPossibleValue=IterationP;
             usedWeight = IterationW;
             for (int j=0; j<n;j++) {

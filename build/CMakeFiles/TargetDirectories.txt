@@ -1,0 +1,3 @@
+/home/maregoat/Desktop/PROJETO2DA/trabalho2da/build/CMakeFiles/Project2.dir
+/home/maregoat/Desktop/PROJETO2DA/trabalho2da/build/CMakeFiles/edit_cache.dir
+/home/maregoat/Desktop/PROJETO2DA/trabalho2da/build/CMakeFiles/rebuild_cache.dir

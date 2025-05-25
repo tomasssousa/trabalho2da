@@ -20,42 +20,44 @@ unsigned int knapsackDP(const std::vector<int> &profits, const std::vector<int> 
 
     // Step 1: Initialize the DP matrix with the values for the base cases
     for(unsigned int k = 0; k <= maxWeight; k++) {
-        maxValue[0][k] = (k >= weights[0]) ? profits[0] : 0; // base case considers using the first item
+        maxValue[0][k] = (k >= weights[0]) ? profits[0] : 0;
     }
 
     // Step 2: Compute values of the DP matrix for the recursive cases
     for(unsigned int i = 1; i < n; i++) {
         for(unsigned int k = 0; k <= maxWeight; k++) {
             if(k < weights[i]) {
-                maxValue[i][k] = maxValue[i - 1][k]; // item is too big for the knapsack, so the optimal solution is the same as not considering it
+                maxValue[i][k] = maxValue[i - 1][k];
             } else {
                 unsigned int valueUsingItemI = maxValue[i - 1][k - weights[i]] + profits[i];
-                maxValue[i][k] = std::max(maxValue[i - 1][k], valueUsingItemI); // using item i improves the solution
+                maxValue[i][k] = std::max(maxValue[i - 1][k], valueUsingItemI);
             }
         }
     }
 
     // Step 3: Build the solution
     std::fill(usedItems.begin(), usedItems.end(), false);
-    unsigned int remainingWeight = maxWeight;
+    unsigned int currentWeight = maxWeight;
     usedWeight = 0;
-
-    for(unsigned int i = 0; i < n; i++) {
+    for(int i = n - 1; i >= 0; i--) {
         if(i == 0) {
-            if(remainingWeight >= weights[0] && maxValue[0][remainingWeight] == profits[0]) {
+            // Special check for the first item
+            if(currentWeight >= weights[0] && maxValue[0][currentWeight] == profits[0]) {
                 usedItems[0] = true;
                 usedWeight += weights[0];
-                remainingWeight -= weights[0];
+                currentWeight -= weights[0];
             }
         } else {
-            if(maxValue[i][remainingWeight] != maxValue[i-1][remainingWeight]) {
+            // Check if item i was included in the optimal solution
+            // Item i is included if removing it changes the optimal value
+            if(maxValue[i][currentWeight] != maxValue[i-1][currentWeight]) {
                 usedItems[i] = true;
                 usedWeight += weights[i];
-                remainingWeight -= weights[i];
+                currentWeight -= weights[i];
             }
         }
     }
-
+    
     return maxValue[n-1][maxWeight];
 }
 

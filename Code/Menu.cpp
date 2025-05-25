@@ -28,6 +28,7 @@ std::vector<int> profits;
 
 enum MainMenuChoices {
     LOAD_AND_PARSE = 1,
+    LOAD_AND_PARSE_EXTRA,
     DISPLAY_INFO,
     CHOOSE_ALGO,
     RUN,
@@ -41,6 +42,17 @@ enum DataSetsChoices {
     DATASET3,
     DATASET4,
     DATASET_GOBACK
+};
+
+enum ExtraDataSetsChoices {
+    EXTRADATASET1 = 1,
+    EXTRADATASET5,
+    EXTRADATASET6,
+    EXTRADATASET7,
+    EXTRADATASET8,
+    EXTRADATASET9,
+    EXTRADATASET10,
+    EXTRADATASET_GOBACK
 };
 
 enum AlgorithmChoices {
@@ -102,12 +114,13 @@ void displayIntroMenu() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "          Welcome to our project!     " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
-    std::cout << "1. Load and Parse the given files " << std::endl;
-    std::cout << "2. Display the information about the Pallets" << std::endl;
-    std::cout << "3. Choose your algorithm (after choosing this option you will be sent to another menu)" << std::endl;
-    std::cout << "4. Run"<<std::endl;
-    std::cout << "5. About" << std::endl;
-    std::cout << "6. Exit" << std::endl;
+    std::cout << "1. Load and Parse the given files - Main Datasets" << std::endl;
+    std::cout << "2. Load and Parse the given files - Extra Datasets" << std::endl;
+    std::cout << "3. Display the information about the Pallets" << std::endl;
+    std::cout << "4. Choose your algorithm (after choosing this option you will be sent to another menu)" << std::endl;
+    std::cout << "5. Run"<<std::endl;
+    std::cout << "6. About" << std::endl;
+    std::cout << "7. Exit" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
 }
 
@@ -124,6 +137,22 @@ void displayDatasetsOptions() {
     std::cout << "5.Back to Main Menu (preferably after choosing which option to solve)" << std::endl;
 }
 
+void displayExtraDatasetsOptions() {
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "          Extra Data Set Choices     " << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "It is provided 7 total datasets to read and solve, in this menu";
+    std::cout << "you will choose which data set to solve!" << std::endl;
+    std::cout << "1.Extra Dataset 1" << std::endl;
+    std::cout << "2.Extra Dataset 5" << std::endl;
+    std::cout << "3.Extra Dataset 6" << std::endl;
+    std::cout << "4.Extra Dataset 7" << std::endl;
+    std::cout << "5.Extra Dataset 8" << std::endl;
+    std::cout << "6.Extra Dataset 9" << std::endl;
+    std::cout << "7.Extra Dataset 10" << std::endl;
+    std::cout << "8.Back to Main Menu (preferably after choosing which option to solve)" << std::endl;
+}
+
 void chooseAlgorithm() {
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "          Algorithm Choices     " << std::endl;
@@ -131,7 +160,7 @@ void chooseAlgorithm() {
     std::cout << "Choose which algorithm to solve the problem" << std::endl;
     std::cout << "1.Brute-Force" << std::endl;
     std::cout << "2.Dynamic Programming" << std::endl;
-    std::cout << "3.Greedy(weight-profit ratio" << std::endl;
+    std::cout << "3.Greedy (weight-profit ratio)" << std::endl;
     std::cout << "4.Integer Linear Programming" << std::endl;
     std::cout << "5.Go Back to Main Menu" << std::endl;
 }
@@ -141,9 +170,9 @@ void displayAboutMenu() {
     std::cout << "          Welcome to the About Menu!     " << std::endl;
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "This project was done by:" << std::endl;
-    std::cout << "  Gustavo Lourenço 202306578" << std::endl;
-    std::cout << "  Tomás Sousa 202303524" << std::endl;
-    std::cout << "  Gonçalo França 202305533" << std::endl;
+    std::cout << "Gustavo Lourenço - 202306578" << std::endl;
+    std::cout << "Tomás Sousa - 202303524" << std::endl;
+    std::cout << "Gonçalo França - 202305533" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
     std::cout << "1. Go back to Main Menu" << std::endl;
     std::cout << "----------------------------------------" << std::endl;
@@ -179,6 +208,56 @@ void handleMainMenuChoice(const int choice) {
                     handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/Datasets_Project2/datasets/TruckAndPallets_04.csv","../CSV_Files/Datasets_Project2/datasets/Pallets_04.csv");
                 } else if (datasetoption == DATASET_GOBACK){
                     break;
+                } else {
+                    std::cout << "Invalid Option. Please choose between 1 and 5." << std::endl;
+                }
+            }
+            break;
+        case LOAD_AND_PARSE_EXTRA:
+            while(true) {
+                displayExtraDatasetsOptions();
+                int extradatasetoption;
+                std::cout << "What dataset you want (insert a number between 1 and 7): " << std::endl;
+                std::cin >> extradatasetoption;
+                if (extradatasetoption == EXTRADATASET1) {
+                    ChosenDataSet = "Extra 1";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/TruckAndPallets_01.csv","../CSV_Files/datasets-extra/Pallets_01.csv");
+                } else if (extradatasetoption == EXTRADATASET5) {
+                    ChosenDataSet = "Extra 5";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_05.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_05.csv");
+                } else if (extradatasetoption == EXTRADATASET6) {
+                    ChosenDataSet = "Extra 6";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_06.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_06.csv");
+                } else if (extradatasetoption == EXTRADATASET7) {
+                    ChosenDataSet = "Extra 7";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_07.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_07.csv");
+                } else if (extradatasetoption == EXTRADATASET8) {
+                    ChosenDataSet = "Extra 8";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_08.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_08.csv");
+                } else if (extradatasetoption == EXTRADATASET9) {
+                    ChosenDataSet = "Extra 9";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_09.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_09.csv");
+                } else if (extradatasetoption == EXTRADATASET10) {
+                    ChosenDataSet = "Extra 10";
+                    weights.clear();
+                    profits.clear();
+                    handle_csv(capacity,numOfPallets,weights,profits,"../CSV_Files/datasets-extra/datasets-extra/TruckAndPallets_10.csv","../CSV_Files/datasets-extra/datasets-extra/Pallets_10.csv");
+                } else if (extradatasetoption == EXTRADATASET_GOBACK) {
+                    break;
+                } else {
+                    std::cout << "Invalid Option. Please choose between 1 and 8." << std::endl;
                 }
             }
             break;
@@ -202,14 +281,20 @@ void handleMainMenuChoice(const int choice) {
                 std::cin >> algoChoice;
                 if (algoChoice == BRUTE_FORCE) {
                     ChosenAlgo = "Brute Force";
+                    break;
                 } else if (algoChoice == DYNAMIC) {
                     ChosenAlgo = "Dynamic Prog";
+                    break;
                 } else if (algoChoice == GREEDY) {
                     ChosenAlgo = "Greedy";
+                    break;
                 } else if (algoChoice == INTEGER) {
                     ChosenAlgo = "Integer";
+                    break;
                 } else if (algoChoice == ALGO_BACK_TO_MAIN) {
                     break;
+                } else {
+                    std::cout << "Invalid Option. Please choose between 1 and 5." << std::endl;
                 }
             }
             break;
@@ -238,8 +323,9 @@ void handleMainMenuChoice(const int choice) {
                 auto end = std::chrono::high_resolution_clock::now();
                 std::chrono::duration<double,std::milli> duration = end - start;
                 write_output(weights,profits,ChosenAlgo,ChosenDataSet,usedItems,duration.count(),result,usedWeight);
+            } else {
+                std::cout << "Please choose an algorithm first!" << std::endl;
             }
-
             break;
         case ABOUT:
             while (true) {

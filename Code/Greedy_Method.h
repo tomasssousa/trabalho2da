@@ -5,7 +5,7 @@
 
 
 unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
-    int MaxProfit=0;
+    unsigned int MaxProfit=0;
     usedWeight=0;
     bool flag=false;
     bool PossibleItem=false;
@@ -30,11 +30,12 @@ unsigned int knapsackGreedyRacio(const std::vector<int> &profits,const std::vect
         }
         else {flag=true;}
     }
+    
     return MaxProfit;
 }
 
 unsigned int knapsackGreedyProfit(const std::vector<int> &profits,const std::vector<int> &weights, unsigned int n, unsigned int maxWeight, std::vector<bool> &usedItems,unsigned int &usedWeight) {
-    int MaxProfit=0;
+    unsigned int MaxProfit=0;
     usedWeight=0;
     bool flag=false;
     bool PossibleItem=false;
